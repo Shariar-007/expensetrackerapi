@@ -3,6 +3,8 @@ package com.example.expensetrackerapi.controllers;
 import com.example.expensetrackerapi.entities.Expense;
 import com.example.expensetrackerapi.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,8 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/expenses")
-    public List<Expense> getAllExpenses() {
-        return expenseService.getAllExpenses();
+    public Page<Expense> getAllExpenses(Pageable pageable) {
+        return expenseService.getAllExpenses(pageable);
     }
 
     @GetMapping("/expenses/{id}")

@@ -4,6 +4,8 @@ import com.example.expensetrackerapi.entities.Expense;
 import com.example.expensetrackerapi.repository.ExpenseRepository;
 import com.example.expensetrackerapi.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -17,8 +19,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+    public Page<Expense> getAllExpenses(Pageable pageable) {
+        return expenseRepository.findAll(pageable);
     }
 
     @Override
